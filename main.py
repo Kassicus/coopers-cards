@@ -14,17 +14,9 @@ class Game():
         self.clock = pygame.time.Clock()
         lib.events = pygame.event.get()
 
-        test = cards.Card()
-
-        self.todo_cards = pygame.sprite.Group()
-        self.current_card = pygame.sprite.Group()
-        self.passed_cards = pygame.sprite.Group()
-        self.failed_cards = pygame.sprite.Group()
-        
-        self.todo_cards.add(test)
-
-    def move_card(self, card, group):
-        pass #TODO This needs to change to card groups, they need more info than just sprite groups.
+        self.todo_cards = cards.CardGroup(-500, -500)
+        self.passed_cards = cards.CardGroup(100, 100)
+        self.failed_cards = cards.CardGroup(700, 100)
 
     def start(self):
         while self.running:
@@ -46,11 +38,7 @@ class Game():
     def draw(self):
         self.screen.fill(lib.color.BLACK)
 
-        self.todo_cards.draw(self.screen)
-
     def update(self):
-        self.todo_cards.update()
-
         pygame.display.update()
         lib.delta_time = self.clock.tick(lib.frames) / 1000
 

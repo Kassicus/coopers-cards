@@ -16,3 +16,22 @@ class Card(pygame.sprite.Sprite):
 
     def update(self):
         pass
+
+class CardGroup():
+    def __init__(self, x: int, y: int):
+        self.pos = pygame.math.Vector2(x, y)
+
+        self.cards = pygame.sprite.Group()
+
+    def add_to_group(self, card: pygame.sprite.Sprite):
+        card.pos = self.pos
+        self.cards.add(card)
+
+    def remove_from_group(self, card: pygame.sprite.Sprite):
+        self.cards.remove(card)
+
+    def draw(self, surface: pygame.Surface):
+        self.cards.draw(surface)
+
+    def update(self):
+        self.cards.update()
